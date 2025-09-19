@@ -7,11 +7,14 @@ export default function ReportViewer() {
 
   useEffect(() => {
     const token = localStorage.getItem("token");
+
     axios
-      .get("http://localhost:8080/api/sweets/report", {
+      .get("https://sweetshop-backend.onrender.com/api/sweets", {
         headers: { Authorization: `Bearer ${token}` },
       })
-      .then((res) => setReport(res.data))
+      .then((res) => {
+        setReport(res.data);
+      })
       .catch((err) => {
         console.error("Report fetch failed:", err);
         setError("❌ Failed to load report");
